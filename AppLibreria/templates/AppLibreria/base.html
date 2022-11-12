@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    {% load static %}
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Book Store Template, Free CSS Template, CSS Website Layout</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="{% static 'AppLibreria/templatemo_style.css' %}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<!--  Free CSS Templates from www.templatemo.com -->
+<div id="templatemo_container">
+	<div id="templatemo_menu">
+    	<ul>
+            <li><a href="{% url 'inicio' %}">Home</a></li>
+            <li><a href="{% url 'busqueda' %}">Busqueda</a></li>
+            <li><a href="{% url 'libros' %}">Libros</a></li>            
+            <li><a href="{% url 'clientes' %}">Clientes</a></li>  
+            <li><a href="#"></a></li> 
+            <li><a href="{% url 'proveedores' %}">Proveedores</a></li>
+    	</ul>
+    </div> <!-- end of menu -->
+    
+    <div id="templatemo_header">
+    	<div id="templatemo_special_offers">
+        	<p>
+                <span>10%</span> descuento por
+        compras en efectivo
+        	</p>
+        </div>
+        
+        
+        <div id="templatemo_new_books">
+        	<ul>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+
+        </div>
+    </div>
+
+    {% block contenido %}
+
+
+
+
+
+
+    {% endblock %}
+
+    
+    <div id="templatemo_footer">
+    
+	       <a href="{% url 'inicio' %}">Home</a> | <a href="{% url 'busqueda' %}">Busqueda</a> | <a href="{% url 'libros' %}">Libros</a> | <a href="{% url 'clientes' %}">Clientes</a> | <a href="#">FAQs</a> | <a href="{% url 'proveedores' %}">Proveedores</a><br />
+        Copyright © 2022 <a href="#"><strong>Diego Vazquez</strong></a> 
+        <!-- Credit: www.templatemo.com -->	</div> 
+    <!-- end of footer -->
+<!--  Free CSS Template www.templatemo.com -->
+</div> <!-- end of container -->
+<!-- templatemo 086 book store -->
+<!-- 
+Book Store Template 
+http://www.templatemo.com/preview/templatemo_086_book_store 
+-->
+</body>
+</html>

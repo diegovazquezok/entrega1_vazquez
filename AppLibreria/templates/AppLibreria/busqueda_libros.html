@@ -1,0 +1,25 @@
+{% extends 'AppLibreria/base.html' %}
+
+{% load static %}
+
+{% block contenido %}
+
+<h1>CONTENIDO</h1>
+
+<br/>
+<br/>
+<P>En esta sección se pueden buscar los libros en stock</p><br/>
+<br/>
+<br/>
+
+<form action="{% url 'resultado-busqueda' %}" method="get">
+    <p>
+        Nombre del libro: <input type="text" name="titulo"><br/>
+        <input type="submit" value="Buscar!"><br/>
+    </p>
+
+</form>
+
+
+
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'AppLibreria/base.html' %}
+
+{% load static %}
+
+{% block contenido %}
+
+<h1>CONTENIDO</h1>
+
+<br/>
+<br/>
+<P>En esta sección se registran nuestros proveedores</p><br/>
+<br/>
+<br/>
+
+<form action="/libreria/proveedores/" method="POST">
+
+    {% csrf_token %}
+
+    <table>
+
+        {{formulario.as_table}}
+
+    </table>
+
+
+
+    <input type="submit" value="Cargar">
+
+
+</form>
+
+
+
+{% endblock %}

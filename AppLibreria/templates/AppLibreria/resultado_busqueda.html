@@ -1,0 +1,28 @@
+{% extends 'AppLibreria/base.html' %}
+
+{% load static %}
+
+{% block contenido %}
+
+<h1>CONTENIDO</h1>
+
+<br/>
+<br/>
+<P>Los resultados son</p><br/>
+<br/>
+<br/>
+
+<ul>
+    {% for libro in libros %}
+        <li> Titulo: {{libro.titulo}}</li>
+        <li> Autor: {{libro.autor_apellido}}&nbsp;{{libro.autor_nombre}}</li>
+        <li>Editorial: {{libro.editorial}}</li>
+        <li>Precio: ${{libro.precio}}</li><br/>
+    
+    {% endfor %}
+
+</ul>
+
+
+
+{% endblock %}
