@@ -16,7 +16,7 @@ def libros(request):
 
         print(formulario)
 
-        if formulario.is_valid:
+        if formulario.is_valid():
 
             informacion =formulario.cleaned_data
 
@@ -50,7 +50,7 @@ def clientes(request):
 
         print(formulario)
 
-        if formulario.is_valid:
+        if formulario.is_valid():
 
             informacion =formulario.cleaned_data
 
@@ -97,7 +97,7 @@ def proveedores(request):
 
         print(formulario)
 
-        if formulario.is_valid:
+        if formulario.is_valid():
 
             informacion =formulario.cleaned_data
 
