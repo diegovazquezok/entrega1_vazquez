@@ -1,7 +1,7 @@
 from AppLibreria.forms import *
 from AppLibreria.models import *
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 
 # Create your views here.
 
@@ -119,17 +119,4 @@ def proveedores(request):
 
 
     return render(request,"AppLibreria/proveedores.html", contexto)
-
-
-
-
-def Leerstock(request):
-
-    stock = Libro.objects.all()
-
-    contexto = {"Leerstock":stock}
-
-    return render(request, "AppLibreria/Leerstock.html", contexto)
-
-
 

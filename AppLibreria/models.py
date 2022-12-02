@@ -15,10 +15,6 @@ class Libro(models.Model):
     precio=models.IntegerField()
     unidad=models.IntegerField()
 
-    def __str__(self):
-        return f"{self.titulo} --> {self.editorial} --> ${self.precio} --> Cant: {self.unidad}"
-
-
 
 class Proveedores(models.Model):
 
@@ -27,11 +23,6 @@ class Proveedores(models.Model):
     proveedor_telefono=models.CharField(max_length=40)
     proveedor_email=models.EmailField()
     proveedor_cuit=models.IntegerField()
-
-    def __str__(self):
-        return f"{self.editorial} --> Tel: {self.proveedor_telefono} --> {self.proveedor_email} --> CUIT: {self.proveedor_cuit}"
-
-
 
 
 class Cliente(models.Model):
@@ -42,9 +33,5 @@ class Cliente(models.Model):
     cliente_email=models.EmailField()
     cliente_telefono=models.CharField(max_length=40)
     cliente_cuil=models.IntegerField()
-
-    def __str__(self):
-        return f"{self.cliente_apellido}, {self.cliente_nombre} --> Tel:  {self.cliente_telefono} --> {self.cliente_email} --> CUIL: {self.cliente_cuil}"
-
 
 

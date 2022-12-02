@@ -9,8 +9,6 @@ urlpatterns = [
     path("busqueda/", busqueda, name="busqueda"),
     path("busqueda/resultados/", resultado_busqueda, name="resultado-busqueda"),
     path("proveedores/", proveedores, name="proveedores"),
-    path("stock/", Leerstock, name="stock"),
-
 
 
 
