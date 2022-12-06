@@ -1,0 +1,22 @@
+{% extends 'AppLibreria/base.html' %}
+
+{% load static %}
+
+{% block contenido %}
+
+<form method="post">
+    {% csrf_token %}
+
+    {% if errors %}
+        <p style="color: red" >Errores en login: {{errors}}</p>
+
+    {% endif %}
+
+    {{form.as_p}}
+
+    <input type="submit" value="Iniciar Sesion">
+
+</form>
+
+
+{% endblock %}

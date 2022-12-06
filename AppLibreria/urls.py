@@ -1,5 +1,6 @@
 from django.urls import path
 from AppLibreria.views import *
+from django.contrib.auth.views import LogoutView
 
 
 urlpatterns = [
@@ -10,8 +11,9 @@ urlpatterns = [
     path("busqueda/resultados/", resultado_busqueda, name="resultado-busqueda"),
     path("proveedores/", proveedores, name="proveedores"),
     path("stock/", Leerstock, name="stock"),
-
-
+    path("login/", iniciar_sesion, name="auth_login"),
+    path("logout/",LogoutView.as_view(template_name='AppLibreria/logout.html'), name="auth_logout"),
+    path("register/", registrar_usuario, name="reg_user"),
 
 
 ]

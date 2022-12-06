@@ -1,7 +1,10 @@
 from AppLibreria.forms import *
 from AppLibreria.models import *
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
+#Imports de Login
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
@@ -130,6 +133,60 @@ def Leerstock(request):
     contexto = {"Leerstock":stock}
 
     return render(request, "AppLibreria/Leerstock.html", contexto)
+
+
+#REGISTER | LOGIN | LOGOUT | EDIT
+
+def iniciar_sesion(request):
+
+    errors = ""
+
+
+    if request.method == "POST":
+
+        formulario1 = AuthenticationForm(request, data = request.POST)
+
+        if formulario1.is_valid():
+            data = formulario1.cleaned_data
+
+            user = authenticate(username = data["username"], password=data["password"])
+
+            if user is not None:
+                login(request, user)
+                return redirect ("inicio")
+            
+            else:
+                return render (request, "AppLibreria/login.html", {"form": formulario1, "errors":"Credenciales Invalidas"})
+        else:
+            return render (request, "AppLibreria/login.html", {"form": formulario1, "errors": formulario1.errors})
+
+    formulario = AuthenticationForm()
+
+    return render (request, "AppLibreria/login.html", {"form": formulario})
+
+
+def registrar_usuario(request):
+
+    if request.method == "POST":
+
+        formulario = UserRegisterForm(request.POST)
+
+        if formulario.is_valid():
+
+            formulario.save()
+            return redirect ("inicio")
+        
+        else:
+            return render (request, "AppLibreria/register.html", {"form": formulario, "errors": formulario.errors})
+
+    formulario = UserRegisterForm()
+
+    return render (request, "AppLibreria/register.html", {"form": formulario})
+
+    
+
+
+
 
 
 
