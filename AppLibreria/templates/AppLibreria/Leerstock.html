@@ -14,10 +14,11 @@
 
     {% if Leerstock %}
 
+
         <ul>
         {% for stock in Leerstock %}
 
-        <li> {{stock}}</li>
+        <li> {{stock}} </li><a href="{% url 'borrar' stock.id %}">Borrar</a>&nbsp&nbsp&nbsp<a href="{% url 'editar' stock.id %}">Editar</a>
 
 
         {% endfor %}

@@ -131,5 +131,48 @@ def Leerstock(request):
 
     return render(request, "AppLibreria/Leerstock.html", contexto)
 
+def eliminar_libro(request, id):
+    libro = Libro.objects.get(id=id)
+    libro.delete()
+
+    return redirect("stock")
+
+
+def editar_libro(request, id):
+    libro = Libro.objects.get(id=id)
+
+    if request.method == "POST":
+        formulario = libroFormulario(request.POST)
+
+        if formulario.is_valid():
+            data = formulario.cleaned_data
+
+            libro.titulo = data ["titulo"]
+            libro.autor_apellido = data ["autor_apellido"]
+            libro.autor_nombre = data ["autor_nombre"]
+            libro.categoria = data ["categoria"]
+            libro.editorial = data ["editorial"]
+            libro.isbn = data ["isbn"]
+            libro.año_edicion = data ["año_edicion"]
+            libro.paginas = data ["paginas"]
+            libro.precio = data ["precio"]
+            libro.unidad = data ["unidad"]
+            libro.save()
+            return redirect("stock")
+        else:
+            return render(request, "AppLibreria/editar_libro.html", {"formulario": formulario, "errores": formulario.errors})    
+
+    else:
+        formulario = libroFormulario(initial={"titulo": libro.titulo,
+                                              "autor_apellido": libro.autor_apellido,
+                                              "autor_nombre": libro.autor_nombre,
+                                              "categoria": libro.categoria, 
+                                              "editorial": libro.editorial,
+                                              "isbn": libro.isbn,
+                                              "año_edicion": libro.año_edicion,
+                                              "paginas":libro.paginas, 
+                                              "precio": libro.precio, 
+                                              "unidad": libro.unidad})
+        return render(request, "AppLibreria/editar_libro.html", {"formulario": formulario, "errores": ""})
 
 
