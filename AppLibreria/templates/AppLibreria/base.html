@@ -18,9 +18,15 @@
             <li><a href="{% url 'libros' %}">Libros</a></li>            
             <li><a href="{% url 'clientes' %}">Clientes</a></li>
             <li><a href="{% url 'stock' %}">Stock</a></li>  
-            <li><a href="#"></a></li> 
             <li><a href="{% url 'proveedores' %}">Proveedores</a></li>
-            <li>Bienvenido: {{request.user}}</li>
+
+            {% if request.user.is_authenticated %}
+                <li><a href="{% url 'auth_logout' %}">Logout</a></li> 
+            {% else %}
+                <li><a href="{% url 'auth_login' %}">Login</a></li>
+            {% endif %}
+
+            <li>| Bienvenido: {{request.user}}</li>
     	</ul>
     </div> <!-- end of menu -->
     
