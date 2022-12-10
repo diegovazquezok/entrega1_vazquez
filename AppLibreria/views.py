@@ -2,6 +2,7 @@ from AppLibreria.forms import *
 from AppLibreria.models import *
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.views.generic import ListView
 
 # Create your views here.
 
@@ -175,4 +176,6 @@ def editar_libro(request, id):
                                               "unidad": libro.unidad})
         return render(request, "AppLibreria/editar_libro.html", {"formulario": formulario, "errores": ""})
 
+def acerca(request):
+    return render(request,"AppLibreria/acerca.html")
 

@@ -4,29 +4,31 @@
 
 {% block contenido %}
 
-<h1>CONTENIDO</h1>
+    <h1>CONTENIDO</h1>
 
-<br/>
-<br/>
-<P>En esta sección se pueden registrar nuestros clientes</p><br/>
-<br/>
-<br/>
+    <br/>
+    <br/>
+    <P>En esta sección se pueden registrar nuestros clientes</p><br/>
+    <br/>
+    <br/>
 
-<form action="/libreria/clientes/" method="POST">
+    <form action="/libreria/clientes/" method="POST">
 
-    {% csrf_token %}
+        {% csrf_token %}
 
-    <table>
+        <table>
 
-        {{formulario.as_table}}
+            {{formulario.as_table}}
 
-    </table>
-
-
-
-    <input type="submit" value="Cargar">
+        </table>
 
 
-</form>
+
+        <input type="submit" value="Cargar">
+
+
+    </form>
+
+
 
 {% endblock %}

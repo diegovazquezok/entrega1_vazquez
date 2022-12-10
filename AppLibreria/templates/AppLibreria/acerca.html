@@ -1,0 +1,55 @@
+{% extends 'AppLibreria/base.html' %}
+
+{% load static %}
+
+{% block contenido %}
+
+<style>
+  .contenedor {
+    display: flex;
+    margin-top: 100px;
+    background-color: black;
+    padding: 25px;
+    color: white;
+  }
+
+  .texto5 {
+    padding-left: 25px;
+    font-size: large;
+  }
+</style>
+
+<h1>Acerca de Nosotros</h1>
+
+<div class=contenedor>
+  <img src="{% static 'AppLibreria/images/juan.png' %}" alt="">
+
+
+  <p class=texto5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore repellendus nobis ratione suscipit
+    sunt
+    obcaecati eius voluptatum, officia unde deleniti a quidem nihil odio, tempore aliquam quae culpa eos eveniet!</p>
+
+</div>
+
+<div class=contenedor>
+  <img src="{% static 'AppLibreria/images/lucio.png' %}" alt="">
+
+
+  <p class=texto5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore repellendus nobis ratione suscipit
+    sunt
+    obcaecati eius voluptatum, officia unde deleniti a quidem nihil odio, tempore aliquam quae culpa eos eveniet!</p>
+
+</div>
+
+<div class=contenedor>
+  <img src="{% static 'AppLibreria/images/Diego.png' %}" alt="">
+
+
+  <p class=texto5>Mi nombre es Diego, soy Licenciado en Ciencias de la Educación, actualmente estoy realizando la
+    tecnicatura en programación en TECLAB. Soy auxiliar de programación. Resido en la Ciudad de Buenos Aires. Mi objetivo es
+    complementar la tarea en educación con la creacion de software ya sea de manera independiente o en relación de
+    dependencia.</p>
+
+</div>
+
+{% endblock %}

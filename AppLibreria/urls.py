@@ -12,6 +12,7 @@ urlpatterns = [
     path("stock/", Leerstock, name="stock"),
     path("stock/borrar/<id>/", eliminar_libro, name="borrar"),
     path("stock/editar/<id>/", editar_libro, name="editar"),
+    path("acerca", acerca, name="acerca"),
 
 
 
