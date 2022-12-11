@@ -21,7 +21,8 @@
             <li><a href="{% url 'proveedores' %}">Proveedores</a></li>
 
             {% if request.user.is_authenticated %}
-                <li><a href="{% url 'auth_logout' %}">Logout</a></li> 
+                <li><a href="{% url 'auth_logout' %}">Logout</a></li>
+                <li> <img src="{{imagen_url}}" style="max-width: 25px;"> </li> 
             {% else %}
                 <li><a href="{% url 'auth_login' %}">Login</a></li>
             {% endif %}

@@ -1,7 +1,9 @@
 from AppLibreria.forms import *
 from AppLibreria.models import *
 from django.shortcuts import render, redirect
-#Imports de Login
+
+# * Imports de Login
+
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, authenticate
 #from django.contrib.auth.mixins import LoginRequiredMixin
@@ -10,7 +12,12 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def inicio(request):
-    return render(request,"AppLibreria/index.html")
+    if request.user.is_authenticated:
+        imagen_model = Avatar.objects.filter(user= request.user.id)[0]
+        imagen_url = imagen_model.imagen.url
+    else:
+        imagen_url = ""
+    return render(request,"AppLibreria/index.html", {"imagen_url": imagen_url})
 
 
 def libros(request):
@@ -136,7 +143,7 @@ def Leerstock(request):
     return render(request, "AppLibreria/Leerstock.html", contexto)
 
 
-#REGISTER | LOGIN | LOGOUT | EDIT
+# * REGISTER | LOGIN | LOGOUT | EDIT
 
 def iniciar_sesion(request):
 
@@ -183,6 +190,34 @@ def registrar_usuario(request):
     formulario = UserRegisterForm()
 
     return render (request, "AppLibreria/register.html", {"form": formulario})
+
+@login_required
+def editar_perfil(request):
+
+    usuario = request.user
+
+    if request.method == "POST":
+
+        formulario = UserEditForm(request.POST)
+
+        if formulario.is_valid():
+            data = formulario.cleaned_data
+
+            usuario.email = data["email"]
+            usuario.password1 = data["password1"]
+            #usuario.password = data["password1"]
+
+            usuario.save()    
+
+            return redirect("inicio")
+
+        else:
+            return render(request, "AppLibreria/editarperfil.html", {"form":formulario, "errors":formulario.errors})
+
+    else:
+
+        formulario = UserEditForm(initial = {"email": usuario.email, "password": usuario.password}) 
+        return render (request, "AppLibreria/editarperfil.html", {"form":formulario})
 
     
 

@@ -14,6 +14,7 @@ urlpatterns = [
     path("login/", iniciar_sesion, name="auth_login"),
     path("logout/",LogoutView.as_view(template_name='AppLibreria/logout.html'), name="auth_logout"),
     path("register/", registrar_usuario, name="reg_user"),
+    path("edit_user/", editar_perfil, name="auth_edit"),
 
 
 ]

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 # se crean tres modelos para la libreria
@@ -45,6 +46,11 @@ class Cliente(models.Model):
 
     def __str__(self):
         return f"{self.cliente_apellido}, {self.cliente_nombre} --> Tel:  {self.cliente_telefono} --> {self.cliente_email} --> CUIL: {self.cliente_cuil}"
+
+class Avatar(models.Model):
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    imagen = models.ImageField(upload_to="avatares", null=True, blank=True)
 
 
 
