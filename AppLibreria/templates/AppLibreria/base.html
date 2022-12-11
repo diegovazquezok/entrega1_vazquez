@@ -23,11 +23,14 @@
             {% if request.user.is_authenticated %}
                 <li><a href="{% url 'auth_logout' %}">Logout</a></li>
                 <li> <img src="{{imagen_url}}" style="max-width: 25px;"> </li> 
+                <li>Bienvenido: {{request.user.first_name}}</li>
             {% else %}
                 <li><a href="{% url 'auth_login' %}">Login</a></li>
+                <li>Hola Visitante</li>
+                |
+                <a style="color: rgb(248, 208, 63);" class="navbar-brand" href="{% url 'reg_user' %}">Registrate ahora!</a>
             {% endif %}
 
-            <li>| Bienvenido: {{request.user}}</li>
     	</ul>
     </div> <!-- end of menu -->
     

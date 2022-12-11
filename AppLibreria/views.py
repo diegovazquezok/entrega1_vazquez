@@ -13,7 +13,7 @@ from django.contrib.auth.decorators import login_required
 
 def inicio(request):
     if request.user.is_authenticated:
-        imagen_model = Avatar.objects.filter(user= request.user.id)[0]
+        imagen_model = Avatar.objects.filter(user= request.user.id).order_by("-id")[0]
         imagen_url = imagen_model.imagen.url
     else:
         imagen_url = ""
@@ -149,7 +149,6 @@ def iniciar_sesion(request):
 
     errors = ""
 
-
     if request.method == "POST":
 
         formulario1 = AuthenticationForm(request, data = request.POST)
@@ -204,8 +203,10 @@ def editar_perfil(request):
             data = formulario.cleaned_data
 
             usuario.email = data["email"]
+            usuario.first_name = data["first_name"]
+            usuario.last_name = data["last_name"]
             usuario.password1 = data["password1"]
-            #usuario.password = data["password1"]
+            usuario.password2 = data["password2"]
 
             usuario.save()    
 
@@ -216,11 +217,32 @@ def editar_perfil(request):
 
     else:
 
-        formulario = UserEditForm(initial = {"email": usuario.email, "password": usuario.password}) 
+        formulario = UserEditForm(initial = {"email": usuario.email, "first_name": usuario.first_name, "last_name": usuario.last_name}) 
         return render (request, "AppLibreria/editarperfil.html", {"form":formulario})
 
-    
 
+@login_required
+def agregar_avatar(request):
+
+    if request.method == "POST":
+        formulario = AvatarForm(request.POST, request.FILES)
+
+        if formulario.is_valid():
+            data = formulario.cleaned_data
+
+            usuario = request.user
+
+            avatar = Avatar(user=usuario, imagen=data["imagen"])
+            avatar.save()
+
+            return redirect("inicio")
+
+        else:
+            return render (request, "AppLibreria/agregar_avatar.html", {"form": formulario, "errors": formulario.errors})
+
+    formulario = AvatarForm()
+
+    return render(request, "AppLibreria/agregar_avatar.html", {"form": formulario})
 
 
 
