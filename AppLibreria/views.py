@@ -1,6 +1,7 @@
 from AppLibreria.forms import *
 from AppLibreria.models import *
 from django.shortcuts import render, redirect
+from AppAuth.models import *
 
 # * Imports de Login
 
@@ -12,12 +13,14 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def inicio(request):
-    if request.user.is_authenticated:
-        imagen_model = Avatar.objects.filter(user= request.user.id).order_by("-id")[0]
-        imagen_url = imagen_model.imagen.url
-    else:
-        imagen_url = ""
-    return render(request,"AppLibreria/index.html", {"imagen_url": imagen_url})
+    # if request.user.is_authenticated:
+    #     imagen_model = Avatar.objects.filter(user= request.user.id).order_by("-id")[0]
+    #     imagen_url = imagen_model.imagen.url
+    # else:
+    #     imagen_url = ""
+    return render(request,"AppLibreria/index.html" )
+
+    # {"imagen_url": imagen_url}
 
 
 def libros(request):
@@ -141,110 +144,3 @@ def Leerstock(request):
     contexto = {"Leerstock":stock}
 
     return render(request, "AppLibreria/Leerstock.html", contexto)
-
-
-# * REGISTER | LOGIN | LOGOUT | EDIT
-
-def iniciar_sesion(request):
-
-    errors = ""
-
-    if request.method == "POST":
-
-        formulario1 = AuthenticationForm(request, data = request.POST)
-
-        if formulario1.is_valid():
-            data = formulario1.cleaned_data
-
-            user = authenticate(username = data["username"], password=data["password"])
-
-            if user is not None:
-                login(request, user)
-                return redirect ("inicio")
-            
-            else:
-                return render (request, "AppLibreria/login.html", {"form": formulario1, "errors":"Credenciales Invalidas"})
-        else:
-            return render (request, "AppLibreria/login.html", {"form": formulario1, "errors": formulario1.errors})
-
-    formulario = AuthenticationForm()
-
-    return render (request, "AppLibreria/login.html", {"form": formulario})
-
-
-def registrar_usuario(request):
-
-    if request.method == "POST":
-
-        formulario = UserRegisterForm(request.POST)
-
-        if formulario.is_valid():
-
-            formulario.save()
-            return redirect ("inicio")
-        
-        else:
-            return render (request, "AppLibreria/register.html", {"form": formulario, "errors": formulario.errors})
-
-    formulario = UserRegisterForm()
-
-    return render (request, "AppLibreria/register.html", {"form": formulario})
-
-@login_required
-def editar_perfil(request):
-
-    usuario = request.user
-
-    if request.method == "POST":
-
-        formulario = UserEditForm(request.POST)
-
-        if formulario.is_valid():
-            data = formulario.cleaned_data
-
-            usuario.email = data["email"]
-            usuario.first_name = data["first_name"]
-            usuario.last_name = data["last_name"]
-            usuario.password1 = data["password1"]
-            usuario.password2 = data["password2"]
-
-            usuario.save()    
-
-            return redirect("inicio")
-
-        else:
-            return render(request, "AppLibreria/editarperfil.html", {"form":formulario, "errors":formulario.errors})
-
-    else:
-
-        formulario = UserEditForm(initial = {"email": usuario.email, "first_name": usuario.first_name, "last_name": usuario.last_name}) 
-        return render (request, "AppLibreria/editarperfil.html", {"form":formulario})
-
-
-@login_required
-def agregar_avatar(request):
-
-    if request.method == "POST":
-        formulario = AvatarForm(request.POST, request.FILES)
-
-        if formulario.is_valid():
-            data = formulario.cleaned_data
-
-            usuario = request.user
-
-            avatar = Avatar(user=usuario, imagen=data["imagen"])
-            avatar.save()
-
-            return redirect("inicio")
-
-        else:
-            return render (request, "AppLibreria/agregar_avatar.html", {"form": formulario, "errors": formulario.errors})
-
-    formulario = AvatarForm()
-
-    return render(request, "AppLibreria/agregar_avatar.html", {"form": formulario})
-
-
-
-
-

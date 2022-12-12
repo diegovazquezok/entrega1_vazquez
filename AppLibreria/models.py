@@ -33,8 +33,6 @@ class Proveedores(models.Model):
         return f"{self.editorial} --> Tel: {self.proveedor_telefono} --> {self.proveedor_email} --> CUIT: {self.proveedor_cuit}"
 
 
-
-
 class Cliente(models.Model):
 
     cliente_apellido=models.CharField(max_length=40)
@@ -46,11 +44,4 @@ class Cliente(models.Model):
 
     def __str__(self):
         return f"{self.cliente_apellido}, {self.cliente_nombre} --> Tel:  {self.cliente_telefono} --> {self.cliente_email} --> CUIL: {self.cliente_cuil}"
-
-class Avatar(models.Model):
-
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    imagen = models.ImageField(upload_to="avatares", null=True, blank=True)
-
-
 
