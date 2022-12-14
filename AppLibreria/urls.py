@@ -8,7 +8,13 @@ urlpatterns = [
     path("clientes/", clientes, name="clientes"),
     path("busqueda/", busqueda, name="busqueda"),
     path("busqueda/resultados/", resultado_busqueda, name="resultado-busqueda"),
+    
     path("proveedores/", proveedores, name="proveedores"),
+    path("proveedores/Plist", ProveedoresList.as_view(), name="Plist"),
+    path("proveedores/Pdetalle/<pk>/", ProveedoresDetalle.as_view(), name="Pdetalle"),
+    path("proveedores/Peditar/<pk>/", ProveedoresUpdate.as_view(), name="Peditar"),
+    path("proveedores/Pborrar/<pk>/", ProveedoresDelete.as_view(), name="Pborrar"),
+    
     path("stock/", Leerstock, name="stock"),
     path("stock/borrar/<id>/", eliminar_libro, name="borrar"),
     path("stock/editar/<id>/", editar_libro, name="editar"),

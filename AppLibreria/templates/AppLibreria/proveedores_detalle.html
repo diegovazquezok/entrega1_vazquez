@@ -1,0 +1,20 @@
+{% extends 'AppLibreria/base.html' %}
+
+{% load static %}
+
+{% block contenido %}
+
+<h1>Listado de Proveedores Detallada</h1>
+
+<p>Editorial: {{ proveedores.editorial }}</p>
+<p>Direccion: {{ proveedores.proveedor_direccion }}</p>
+<p>EMAIL: {{ proveedores.proveedor_email }}</p>
+<p>Telefono: {{ proveedores.proveedor_telefono }}</p>
+<p>Cuit: {{ proveedores.proveedor_cuit }}</p>
+
+<p>
+    <a href= "{% url 'Plist' %}" >Regresar</a>
+</p>
+
+
+{% endblock %}

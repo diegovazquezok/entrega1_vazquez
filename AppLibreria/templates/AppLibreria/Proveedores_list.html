@@ -1,0 +1,23 @@
+{% extends 'AppLibreria/base.html' %}
+
+{% load static %}
+
+{% block contenido %}
+
+<h1>Listado de Proveedores</h1>
+
+<ul>
+    {% for proveedore in object_list %}
+        <li>
+            <p>Editorial: {{proveedore.editorial}} </p> 
+            <a href="{% url 'Pdetalle' proveedore.id %}">Detalle</a>
+            <a href="{% url 'Peditar' proveedore.id %}">Actualizar</a> 
+            <a href="{% url 'Pborrar' proveedore.id %}">Borrar</a> 
+        </li>
+    {% endfor %}
+</ul>
+
+
+
+
+{% endblock %}

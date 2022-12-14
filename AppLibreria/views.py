@@ -2,7 +2,7 @@ from AppLibreria.forms import *
 from AppLibreria.models import *
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView, UpdateView, DeleteView
 
 # Create your views here.
 
@@ -179,3 +179,21 @@ def editar_libro(request, id):
 def acerca(request):
     return render(request,"AppLibreria/acerca.html")
 
+class ProveedoresList(ListView):
+    model = Proveedores
+    template_name = "AppLibreria/proveedores_list.html"
+
+class ProveedoresDetalle(DetailView):
+    model = Proveedores
+    template_name = "AppLibreria/proveedores_detalle.html"
+
+class ProveedoresUpdate(UpdateView):
+    
+    model = Proveedores
+    success_url = "/libreria/proveedores/"
+    fields = ["proveedor_direccion", "proveedor_email", "proveedor_telefono"]
+
+class ProveedoresDelete(DeleteView):
+    
+    model = Proveedores
+    success_url = "/libreria/proveedores/"
