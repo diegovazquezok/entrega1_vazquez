@@ -12,17 +12,21 @@
 <br/>
 <br/>
 
-<ul>
-    {% for libro in libros %}
-        <li> Titulo: {{libro.titulo}}</li>
-        <li> Autor: {{libro.autor_apellido}}&nbsp;{{libro.autor_nombre}}</li>
-        <li>Editorial: {{libro.editorial}}</li>
-        <li>Precio: ${{libro.precio}}</li><br/>
-    
-    {% endfor %}
+{% if libros %}
+    <ul>
+        {% for libro in libros %}
+            <li> Titulo: {{libro.titulo}}</li>
+            <li> Autor: {{libro.autor_apellido}}&nbsp;{{libro.autor_nombre}}</li>
+            <li>Editorial: {{libro.editorial}}</li>
+            <li>Precio: ${{libro.precio}}</li><br/>
+        
+        {% endfor %}
 
-</ul>
+    </ul>
 
+{% else %}
+    <p>No hay libros disponibles de momento</p>
+{% endif %}
 
 
 {% endblock %}

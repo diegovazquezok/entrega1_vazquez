@@ -197,3 +197,23 @@ class ProveedoresDelete(DeleteView):
     
     model = Proveedores
     success_url = "/libreria/proveedores/"
+
+
+class ClientesList(ListView):
+    model = Cliente
+    template_name = "AppLibreria/Clientes_list.html"
+
+class ClientesDetalle(DetailView):
+    model = Cliente
+    template_name = "AppLibreria/cliente_detalle.html"
+
+class ClientesUpdate(UpdateView):
+    
+    model = Cliente
+    success_url = "/libreria/clientes/"
+    fields = ["cliente_direccion", "cliente_email", "cliente_telefono"]
+
+class ClientesDelete(DeleteView):
+    
+    model = Cliente
+    success_url = "/libreria/clientes/"

@@ -5,7 +5,14 @@ from AppLibreria.views import *
 urlpatterns = [
     path("", inicio, name="inicio"),
     path("libros/", libros, name="libros"),
+    
     path("clientes/", clientes, name="clientes"),
+    path("clientes/Clist/", ClientesList.as_view(), name= "Clist"),
+    path("clientes/Cdetalle/<pk>/", ClientesDetalle.as_view(), name="Cdetalle"),
+    path("clientes/Ceditar/<pk>/", ClientesUpdate.as_view(), name="Ceditar"),
+    path("clientes/Cborrar/<pk>/", ClientesDelete.as_view(), name="Cborrar"),
+    
+    
     path("busqueda/", busqueda, name="busqueda"),
     path("busqueda/resultados/", resultado_busqueda, name="resultado-busqueda"),
     

@@ -1,0 +1,27 @@
+{% extends 'AppLibreria/base.html' %}
+
+{% load static %}
+
+{% block contenido %}
+
+<h1>CONTENIDO</h1>
+
+<br/>
+<br/>
+<P>En esta sección se registran cambios en clientes</p><br/>
+<br/>
+<br/>
+
+<form method="post">
+
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Actualizar">
+</form>
+
+<p>
+    <a href= "{% url 'Clist' %}" >Regresar</a>
+</p>
+
+
+{% endblock %}

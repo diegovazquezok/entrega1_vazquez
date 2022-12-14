@@ -1,0 +1,19 @@
+{% extends 'AppLibreria/base.html' %}
+
+{% load static %}
+
+{% block contenido %}
+
+<form method="post">
+    {% csrf_token %}
+
+    <p>
+        Estas seguro que queres borrar el cliente'{{object.cliente_apellido}}'?
+        <input type="submit" value="Si">
+    </p>
+
+    <a href="{% url 'Clist' %}">Volver al listado</a>
+</form>
+
+
+{% endblock %}

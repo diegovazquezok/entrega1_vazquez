@@ -6,17 +6,23 @@
 
 <h1>Listado de Proveedores</h1>
 
-<ul>
-    {% for proveedore in object_list %}
-        <li>
-            <p>Editorial: {{proveedore.editorial}} </p> 
-            <a href="{% url 'Pdetalle' proveedore.id %}">Detalle</a>
-            <a href="{% url 'Peditar' proveedore.id %}">Actualizar</a> 
-            <a href="{% url 'Pborrar' proveedore.id %}">Borrar</a> 
-        </li>
-    {% endfor %}
-</ul>
 
+{% if object_list %}
+
+    <ul>
+        {% for proveedore in object_list %}
+            <li>
+                <p>Editorial: {{proveedore.editorial}} </p> 
+                <a href="{% url 'Pdetalle' proveedore.id %}">Detalle</a>
+                <a href="{% url 'Peditar' proveedore.id %}">Actualizar</a> 
+                <a href="{% url 'Pborrar' proveedore.id %}">Borrar</a> 
+            </li>
+        {% endfor %}
+    </ul>
+
+{% else %}
+    <p>No hay proveedores disponibles de momento</p>
+{% endif %}
 
 
 

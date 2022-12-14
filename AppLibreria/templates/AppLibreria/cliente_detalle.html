@@ -1,0 +1,21 @@
+{% extends 'AppLibreria/base.html' %}
+
+{% load static %}
+
+{% block contenido %}
+
+<h1>Listado de Clientes Detallada</h1>
+
+<p>Apellido: {{ cliente.cliente_apellido }}</p>
+<p>Nombre: {{ cliente.cliente_nombre }}</p>
+<p>Direccion: {{ cliente.cliente_direccion }}</p>
+<p>EMAIL: {{ cliente.cliente_email }}</p>
+<p>Telefono: {{ cliente.cliente_telefono }}</p>
+<p>Cuil: {{ cliente.cliente_cuil }}</p>
+
+<p>
+    <a href= "{% url 'Clist' %}" >Regresar</a>
+</p>
+
+
+{% endblock %}
