@@ -13,14 +13,8 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def inicio(request):
-    # if request.user.is_authenticated:
-    #     imagen_model = Avatar.objects.filter(user= request.user.id).order_by("-id")[0]
-    #     imagen_url = imagen_model.imagen.url
-    # else:
-    #     imagen_url = ""
-    return render(request,"AppLibreria/index.html" )
 
-    # {"imagen_url": imagen_url}
+    return render(request,"AppLibreria/index.html")
 
 
 def libros(request):
@@ -48,12 +42,13 @@ def libros(request):
             )
             libro.save()
 
-            return render (request, "AppLibreria/libros.html" )
+            return render (request, "AppLibreria/libros.html")
     else:
             formulario= libroFormulario()
 
-    contexto = {"formulario":formulario}    
-    return render(request,"AppLibreria/libros.html", contexto )
+    contexto = {"formulario":formulario}   
+   
+    return render(request,"AppLibreria/libros.html", contexto)
 
 
 
@@ -90,9 +85,11 @@ def clientes(request):
 
 
 def busqueda(request):
+
     return render(request,"AppLibreria/busqueda_libros.html")
 
 def resultado_busqueda(request):
+
     titulo= request.GET['titulo']
 
     libros = Libro.objects.filter(titulo__icontains=titulo)
@@ -104,7 +101,6 @@ def resultado_busqueda(request):
 
 @login_required
 def proveedores(request):
-
 
     if request.method == "POST":
         formulario = proveedoresFormulario(request.POST)
@@ -133,8 +129,6 @@ def proveedores(request):
 
 
     return render(request,"AppLibreria/proveedores.html", contexto)
-
-
 
 
 def Leerstock(request):

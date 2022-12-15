@@ -53,7 +53,7 @@ def registrar_usuario(request):
         if formulario.is_valid():
 
             formulario.save()
-            return redirect ("inicio")
+            return redirect ("auth_login")
         
         else:
             return render (request, "AppAuth/register.html", {"form": formulario, "errors": formulario.errors})
@@ -90,29 +90,6 @@ def editar_perfil(request):
         formulario = UserEditForm(initial = {"email": usuario.email, "first_name": usuario.first_name, "last_name": usuario.last_name}) 
         return render (request, "AppAuth/editarperfil.html", {"form":formulario})
 
-
-@login_required
-def agregar_avatar(request):
-
-    if request.method == "POST":
-        formulario = AvatarForm(request.POST, request.FILES)
-
-        if formulario.is_valid():
-            data = formulario.cleaned_data
-
-            usuario = request.user
-
-            avatar = Avatar(user=usuario, imagen=data["imagen"])
-            avatar.save()
-
-            return redirect("inicio")
-
-        else:
-            return render (request, "AppAuth/agregar_avatar.html", {"form": formulario, "errors": formulario.errors})
-
-    formulario = AvatarForm()
-
-    return render(request, "AppAuth/agregar_avatar.html", {"form": formulario})
 
 class MyPasswordChangeView(PasswordChangeView):
     template_name = 'users/password_change.html'

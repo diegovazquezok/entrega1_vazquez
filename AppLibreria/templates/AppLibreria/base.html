@@ -23,7 +23,6 @@
             {% if request.user.is_authenticated %}
                 <li><a href="{% url 'auth_logout' %}">Logout</a></li>
                 <li><a href="{% url 'auth_edit' %}">Editar Perfil</a></li>
-                <li> <img src="{{imagen_url}}" style="max-width: 25px;"> </li> 
                 <li>Bienvenido, {{request.user.first_name}}</li>
             {% else %}
                 <li><a href="{% url 'auth_login' %}">Login</a></li>

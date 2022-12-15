@@ -128,8 +128,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #Login URL
 
 LOGIN_URL = "/libreria/login/"
-
-#Media URL (Imaganes avatar)
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
