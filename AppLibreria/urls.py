@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import include, path
 from AppLibreria.views import *
 from django.contrib.auth.views import LogoutView
 from AppAuth.views import *
@@ -17,5 +17,6 @@ urlpatterns = [
     path("register/", registrar_usuario, name="reg_user"),
     path("edit_user/", editar_perfil, name="auth_edit"),
     path("add_avatar/", agregar_avatar, name="auth_avatar"),
+    path("users/", include('AppAuth.urls', namespace="AppAuth")),
 
 ]

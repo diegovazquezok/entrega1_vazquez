@@ -3,7 +3,7 @@
 <head>
     {% load static %}
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Book Store Template, Free CSS Template, CSS Website Layout</title>
+<title>Book Store - Proyecto Coder</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <link href="{% static 'AppLibreria/templatemo_style.css' %}" rel="stylesheet" type="text/css" />
@@ -22,8 +22,9 @@
 
             {% if request.user.is_authenticated %}
                 <li><a href="{% url 'auth_logout' %}">Logout</a></li>
+                <li><a href="{% url 'auth_edit' %}">Editar Perfil</a></li>
                 <li> <img src="{{imagen_url}}" style="max-width: 25px;"> </li> 
-                <li>Bienvenido: {{request.user.first_name}}</li>
+                <li>Bienvenido, {{request.user.first_name}}</li>
             {% else %}
                 <li><a href="{% url 'auth_login' %}">Login</a></li>
                 <li>Hola Visitante</li>
@@ -55,11 +56,7 @@
 
     {% block contenido %}
 
-
-
-
-
-
+        
     {% endblock %}
 
     

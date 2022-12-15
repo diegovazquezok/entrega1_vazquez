@@ -9,6 +9,8 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, authenticate
 #from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import PasswordChangeView, PasswordResetDoneView
+from django.urls import reverse_lazy
 
 # Create your views here.
 
@@ -35,7 +37,7 @@ def iniciar_sesion(request):
             else:
                 return render (request, "AppAuth/login.html", {"form": formulario1, "errors":"Credenciales Invalidas"})
         else:
-            return render (request, "AppLAuth/login.html", {"form": formulario1, "errors": formulario1.errors})
+            return render (request, "AppAuth/login.html", {"form": formulario1, "errors": formulario1.errors})
 
     formulario = AuthenticationForm()
 
@@ -71,13 +73,11 @@ def editar_perfil(request):
 
         if formulario.is_valid():
             data = formulario.cleaned_data
-
+           
             usuario.email = data["email"]
             usuario.first_name = data["first_name"]
             usuario.last_name = data["last_name"]
-            usuario.password1 = data["password1"]
-            usuario.password2 = data["password2"]
-
+                                
             usuario.save()    
 
             return redirect("inicio")
@@ -113,3 +113,11 @@ def agregar_avatar(request):
     formulario = AvatarForm()
 
     return render(request, "AppAuth/agregar_avatar.html", {"form": formulario})
+
+class MyPasswordChangeView(PasswordChangeView):
+    template_name = 'users/password_change.html'
+    success_url = reverse_lazy('AppAuth:password_change_done_view')
+    
+
+class MyPasswordResetDoneView(PasswordResetDoneView):
+    template_name = 'users/password_reset_done.html'
