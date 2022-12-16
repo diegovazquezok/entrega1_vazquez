@@ -44,4 +44,3 @@ class Cliente(models.Model):
 
     def __str__(self):
         return f"{self.cliente_apellido}, {self.cliente_nombre} --> Tel:  {self.cliente_telefono} --> {self.cliente_email} --> CUIL: {self.cliente_cuil}"
-
