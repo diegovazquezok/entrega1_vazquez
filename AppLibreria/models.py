@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 # se crean tres modelos para la libreria
@@ -32,8 +33,6 @@ class Proveedores(models.Model):
         return f"{self.editorial} --> Tel: {self.proveedor_telefono} --> {self.proveedor_email} --> CUIT: {self.proveedor_cuit}"
 
 
-
-
 class Cliente(models.Model):
 
     cliente_apellido=models.CharField(max_length=40)
@@ -45,6 +44,3 @@ class Cliente(models.Model):
 
     def __str__(self):
         return f"{self.cliente_apellido}, {self.cliente_nombre} --> Tel:  {self.cliente_telefono} --> {self.cliente_email} --> CUIL: {self.cliente_cuil}"
-
-
-

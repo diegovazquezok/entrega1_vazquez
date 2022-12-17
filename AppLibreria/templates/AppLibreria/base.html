@@ -1,9 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+<html lang = "es">
 <head>
     {% load static %}
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Book Store Template, Free CSS Template, CSS Website Layout</title>
+<title>Book Store - Proyecto Coder</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <link href="{% static 'AppLibreria/templatemo_style.css' %}" rel="stylesheet" type="text/css" />
@@ -18,22 +19,20 @@
             <li><a href="{% url 'libros' %}">Libros</a></li>            
             <li><a href="{% url 'clientes' %}">Clientes</a></li>
             <li><a href="{% url 'stock' %}">Stock</a></li>  
-            <li><a href="#"></a></li> 
-            <li><a href="{% url 'proveedores' %}">Proveedores</a></li>
-            <li><a href="#">Registrarse</a></li>
+            <li><a href="{% url 'proveedores' %}">Proveedores</a></li>            
 
             {% if request.user.is_authenticated %}
-                <a class="btn btn-primary" href="#">Logout</a>
-                <p class="small text-muted mb-4 mb-lg-0">Hola {{request.user.username}}!</p>
-                <img src="{{imagen_url}}" style="max-width: 55px;">
+            {% load static %}
+                <li><img class="profile-pic" height="25px" src="{{ user.avatar.image.url }}" alt="?"></li>
+                <li><a href="{% url 'auth_logout' %}">Logout</a></li>
+                <li><a href="{% url 'auth_edit' %}">Editar Perfil</a></li>
+                <li>Bienvenido, {{request.user.first_name}}</li>
             {% else %}
-                <a class="btn btn-primary" href="#">Login</a>
-                <p class="small text-muted mb-4 mb-lg-0">Hola Visitante</p>
-
+                <li><a href="{% url 'auth_login' %}">Login</a></li>
+                <li>Hola Visitante</li>
+                |
+                <a style="color: rgb(248, 208, 63);" class="navbar-brand" href="{% url 'reg_user' %}">Registrate ahora!</a>
             {% endif %}
-
-
-
     	</ul>
     </div> <!-- end of menu -->
     
@@ -58,18 +57,14 @@
 
     {% block contenido %}
 
-
-
-
-
-
+        
     {% endblock %}
 
     
     <div id="templatemo_footer">
     
-	       <a href="{% url 'inicio' %}">Home</a> | <a href="{% url 'busqueda' %}">Busqueda</a> | <a href="{% url 'libros' %}">Libros</a> | <a href="{% url 'clientes' %}">Clientes</a> |  <a href="{% url 'proveedores' %}">Proveedores</a>  | <a href="{% url 'acerca' %}">Acerca</a> <br />>
-        Copyright © 2022 <a href="#"><strong>Delucca | Herrera | Vazquez</strong></a> 
+            <a href="{% url 'inicio' %}">Home</a> | <a href="{% url 'busqueda' %}">Busqueda</a> | <a href="{% url 'libros' %}">Libros</a> | <a href="{% url 'clientes' %}">Clientes</a> |  <a href="{% url 'proveedores' %}">Proveedores</a>  | <a href="{% url 'acerca' %}">Acerca</a> <br />>
+        Copyright © 2022 <a href="#"><strong>Delucca | Herrera | Vazquez</strong></a>
         <!-- Credit: www.templatemo.com -->	</div> 
     <!-- end of footer -->
 <!--  Free CSS Template www.templatemo.com -->
@@ -80,4 +75,5 @@ Book Store Template
 http://www.templatemo.com/preview/templatemo_086_book_store 
 -->
 </body>
+</html>
 </html>
