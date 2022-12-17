@@ -22,10 +22,6 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-<<<<<<< HEAD
     path("libreria/", include("AppLibreria.urls")),
-=======
-    path("", include("AppLibreria.urls"))
->>>>>>> 7390e03371be64353b6a7acff4acaa45f2c76a86
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

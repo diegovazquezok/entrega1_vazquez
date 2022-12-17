@@ -225,3 +225,20 @@ class ClientesDelete(DeleteView):
     
     model = Cliente
     success_url = "/clientes/"
+
+def contacto(request):
+    data = {
+        'form': ContactoForm()
+    }
+
+    if request.method == 'POST':
+        formulario = ContactoForm(data=request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            data["mensaje"] = "contacto recibido"
+        else:
+            data["form"] = formulario
+
+
+
+    return render(request, 'AppLibreria/contacto.html', data)

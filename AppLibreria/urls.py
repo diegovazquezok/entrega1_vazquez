@@ -25,6 +25,7 @@ urlpatterns = [
     path("stock/borrar/<id>/", eliminar_libro, name="borrar"),
     path("stock/editar/<id>/", editar_libro, name="editar"),
     path("acerca", acerca, name="acerca"),
+    path("contacto", contacto, name="contacto"),
     
 # * PATHS LOGIN 
     path("login/", iniciar_sesion, name="auth_login"),
