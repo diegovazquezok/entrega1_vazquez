@@ -32,5 +32,6 @@ urlpatterns = [
     path("register/", registrar_usuario, name="reg_user"),
     path("edit_user/", editar_perfil, name="auth_edit"),
     path("users/", include('AppAuth.urls', namespace="AppAuth")),
+    path('profile_image/', profile, name="add_avatar"),
 
 ]

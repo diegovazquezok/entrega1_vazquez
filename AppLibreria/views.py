@@ -198,13 +198,13 @@ class ProveedoresDetalle(DetailView):
 class ProveedoresUpdate(UpdateView):
     
     model = Proveedores
-    success_url = "/libreria/proveedores/"
+    success_url = "/proveedores/"
     fields = ["proveedor_direccion", "proveedor_email", "proveedor_telefono"]
 
 class ProveedoresDelete(DeleteView):
     
     model = Proveedores
-    success_url = "/libreria/proveedores/"
+    success_url = "/proveedores/"
 
 
 class ClientesList(ListView):
@@ -218,10 +218,10 @@ class ClientesDetalle(DetailView):
 class ClientesUpdate(UpdateView):
     
     model = Cliente
-    success_url = "/libreria/clientes/"
+    success_url = "/clientes/"
     fields = ["cliente_direccion", "cliente_email", "cliente_telefono"]
 
 class ClientesDelete(DeleteView):
     
     model = Cliente
-    success_url = "/libreria/clientes/"
+    success_url = "/clientes/"
