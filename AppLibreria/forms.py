@@ -1,4 +1,6 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 class libroFormulario(forms.Form):
 
@@ -30,9 +32,3 @@ class proveedoresFormulario(forms.Form):
     proveedor_telefono=forms.CharField()
     proveedor_email=forms.EmailField()
     proveedor_cuit=forms.IntegerField()
-
-
-
-    
-
-

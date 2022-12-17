@@ -1,0 +1,37 @@
+{% extends 'AppLibreria/base.html' %}
+
+{% load static %}
+
+{% block contenido %}
+
+{% if errors %}
+
+    <p style="color:red">{{errors}}</p>
+
+{% endif %}
+
+<!-- Editar datos de usuario -->
+
+<form method="post">
+    {% csrf_token %}
+
+    <h1 style="color:firebrick ;">Edicion de usuario</h1>
+
+    <table>
+
+    {{ form.as_table }}
+
+    </table>
+
+    <input type="submit" value="Guardar">
+
+</form>
+<br>
+<!-- Cambio de Password -->
+
+<h1 style="color: firebrick">Cambie su contraseña aqui</h1>
+        <div class="eight wide column">
+            <a href="{% url 'AppAuth:password_change_view' %}"><button class="ui button">Cambiar Password</button></a>
+            <br>
+
+{% endblock %}

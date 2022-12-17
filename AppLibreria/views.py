@@ -1,12 +1,20 @@
 from AppLibreria.forms import *
 from AppLibreria.models import *
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from AppAuth.models import *
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView
+
+# * Imports de Login
+
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth import login, authenticate
+#from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 def inicio(request):
+
     return render(request,"AppLibreria/index.html")
 
 
@@ -35,12 +43,13 @@ def libros(request):
             )
             libro.save()
 
-            return render (request, "AppLibreria/libros.html" )
+            return render (request, "AppLibreria/libros.html")
     else:
             formulario= libroFormulario()
 
-    contexto = {"formulario":formulario}    
-    return render(request,"AppLibreria/libros.html", contexto )
+    contexto = {"formulario":formulario}   
+   
+    return render(request,"AppLibreria/libros.html", contexto)
 
 
 
@@ -77,9 +86,11 @@ def clientes(request):
 
 
 def busqueda(request):
+
     return render(request,"AppLibreria/busqueda_libros.html")
 
 def resultado_busqueda(request):
+
     titulo= request.GET['titulo']
 
     libros = Libro.objects.filter(titulo__icontains=titulo)
@@ -89,9 +100,8 @@ def resultado_busqueda(request):
 
 
 
-
+@login_required
 def proveedores(request):
-
 
     if request.method == "POST":
         formulario = proveedoresFormulario(request.POST)
@@ -120,8 +130,6 @@ def proveedores(request):
 
 
     return render(request,"AppLibreria/proveedores.html", contexto)
-
-
 
 
 def Leerstock(request):
