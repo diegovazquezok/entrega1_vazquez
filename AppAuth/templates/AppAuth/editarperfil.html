@@ -15,7 +15,7 @@
 <form method="post">
     {% csrf_token %}
 
-    <h1 style="color:firebrick ;">Edicion de usuario</h1>
+    <h1 style="color:firebrick ;">Edicion de usuario:</h1>
 
     <table>
 
@@ -29,7 +29,7 @@
 <br>
 <!-- Cambio de Password -->
 
-<h1 style="color: firebrick">Cambie su contraseña aqui</h1>
+<h1 style="color: firebrick">Cambie su contraseña aqui:</h1>
         <div class="eight wide column">
             <a href="{% url 'AppAuth:password_change_view' %}"><button class="ui button">Cambiar Password</button></a>
             <br>

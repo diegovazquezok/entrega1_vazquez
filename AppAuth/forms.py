@@ -3,6 +3,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.views import PasswordChangeView
 
+from .models import Avatar
+
 
 # * Creacion y edicion de usuarios/avatars 
 
@@ -37,3 +39,8 @@ class UserEditForm(forms.Form):
 
 #############################################################
 
+# Create a ProfileUpdateForm to update image.
+class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Avatar
+        fields = ['image']

@@ -12,6 +12,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordChangeView, PasswordResetDoneView
 from django.urls import reverse_lazy
 
+from .forms import UserRegisterForm, ProfileUpdateForm
+
+
 # Create your views here.
 
 
@@ -99,4 +102,19 @@ class MyPasswordChangeView(PasswordChangeView):
 class MyPasswordResetDoneView(PasswordResetDoneView):
     template_name = 'users/password_reset_done.html'
 
-########################################################################################3
+########################################################################################
+
+@login_required
+def profile(request):
+    if request.method == 'POST':
+        p_form = ProfileUpdateForm(request.POST, request.FILES)
+        if p_form.is_valid():
+            p_form.save()
+            return redirect('inicio') # Redirect back to profile page
+
+    else:
+        p_form = ProfileUpdateForm()
+
+    context = {'p_form': p_form}
+
+    return render(request, 'AppAuth/add_avatar.html', context)
