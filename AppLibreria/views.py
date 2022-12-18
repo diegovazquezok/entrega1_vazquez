@@ -10,6 +10,7 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, authenticate
 #from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 
 # Create your views here.
 
@@ -17,7 +18,8 @@ def inicio(request):
 
     return render(request,"AppLibreria/index.html")
 
-
+@staff_member_required
+@login_required
 def libros(request):
 
     if request.method == "POST":
@@ -52,7 +54,8 @@ def libros(request):
     return render(request,"AppLibreria/libros.html", contexto)
 
 
-
+@staff_member_required
+@login_required
 def clientes(request):
 
     if request.method == "POST":
@@ -100,6 +103,7 @@ def resultado_busqueda(request):
 
 
 
+@staff_member_required
 @login_required
 def proveedores(request):
 
@@ -131,7 +135,8 @@ def proveedores(request):
 
     return render(request,"AppLibreria/proveedores.html", contexto)
 
-
+@staff_member_required
+@login_required
 def Leerstock(request):
 
     stock = Libro.objects.all()
@@ -140,13 +145,16 @@ def Leerstock(request):
 
     return render(request, "AppLibreria/Leerstock.html", contexto)
 
+@staff_member_required
+@login_required
 def eliminar_libro(request, id):
     libro = Libro.objects.get(id=id)
     libro.delete()
 
     return redirect("stock")
 
-
+@staff_member_required
+@login_required
 def editar_libro(request, id):
     libro = Libro.objects.get(id=id)
 
@@ -186,6 +194,7 @@ def editar_libro(request, id):
 
 def acerca(request):
     return render(request,"AppLibreria/acerca.html")
+
 
 class ProveedoresList(ListView):
     model = Proveedores

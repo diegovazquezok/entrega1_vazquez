@@ -11,7 +11,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordChangeView, PasswordResetDoneView
 from django.urls import reverse_lazy
-
+from django.contrib.admin.views.decorators import staff_member_required
 from .forms import UserRegisterForm, ProfileUpdateForm
 
 
@@ -106,10 +106,21 @@ class MyPasswordResetDoneView(PasswordResetDoneView):
 
 @login_required
 def profile(request):
+
+    usuario = request.user
+
     if request.method == 'POST':
-        p_form = ProfileUpdateForm(request.POST, request.FILES)
+
+        p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.avatar)
+
         if p_form.is_valid():
-            p_form.save()
+
+            data = p_form.cleaned_data
+
+            usuario.image = data["image"]
+
+            usuario.save()
+         
             return redirect('inicio') # Redirect back to profile page
 
     else:
