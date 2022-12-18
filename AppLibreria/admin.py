@@ -6,3 +6,4 @@ from AppLibreria.models import *
 admin.site.register(Libro)
 admin.site.register(Proveedores)
 admin.site.register(Cliente)
+admin.site.register(Contacto)

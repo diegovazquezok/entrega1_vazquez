@@ -1,0 +1,31 @@
+{% extends 'AppLibreria/base.html' %}
+
+{% load static %}
+
+{% block contenido %}
+
+<h1> CONTACTO</h1>
+
+
+
+<form action="" class="formulario_contacto" method="post" >
+
+    {% csrf_token %}
+
+    <table>
+
+        {{ form }}
+
+    </table>
+
+    
+
+    <br>
+
+    <button type="submit" id="btnEnviar" class="button">Enviar</button>
+</form>
+
+{{mensaje}}
+
+
+{% endblock %}

@@ -44,3 +44,20 @@ class Cliente(models.Model):
 
     def __str__(self):
         return f"{self.cliente_apellido}, {self.cliente_nombre} --> Tel:  {self.cliente_telefono} --> {self.cliente_email} --> CUIL: {self.cliente_cuil}"
+
+
+opciones_consulta = [
+    [0, "consulta"],
+    [1, "reclamos"],
+    [2, "sugerencias"]
+]
+
+class Contacto(models.Model):
+    nombre = models.CharField(max_length=50)
+    correo = models.EmailField()
+    tipo_consulta = models.IntegerField(choices=opciones_consulta)
+    mensaje = models.TextField()
+    avisos = models.BooleanField()
+
+    def __str__(self):
+        return self.nombre
